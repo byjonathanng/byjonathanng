@@ -1,0 +1,15 @@
+# Core
+PyYAML>=6.0
+
+# Jira connector
+jira>=3.5
+
+# Trello connector
+py-trello>=0.19
+
+# iOS Reminders via iCloud CalDAV
+caldav>=1.3
+icalendar>=5.0
+
+# Dev / tests
+pytest>=7.0

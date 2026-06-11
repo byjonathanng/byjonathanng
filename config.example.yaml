@@ -1,0 +1,42 @@
+# tasksync configuration
+#
+# Copy to config.yaml and fill in. Secrets should be referenced as
+# ${ENV_VAR} and provided via the environment (or a .env you source) so this
+# file stays safe to commit/share. config.yaml itself is gitignored.
+
+sync:
+  state_db: .tasksync_state.db   # SQLite file that remembers cross-system links
+  interval_seconds: 300          # used by `tasksync sync --loop`
+  propagate_deletes: true        # delete in one system -> delete in the others
+
+systems:
+
+  # --- Jira -----------------------------------------------------------------
+  jira:
+    enabled: true
+    server: https://your-domain.atlassian.net
+    email: ${JIRA_EMAIL}
+    api_token: ${JIRA_API_TOKEN}     # id.atlassian.com -> Security -> API tokens
+    project: ABC                     # project key new tasks are created in
+    issue_type: Task
+    # Which issues participate in sync (default: the whole project):
+    jql: 'project = "ABC" AND statusCategory != Done ORDER BY updated DESC'
+    done_status: Done                # status used to mark a task complete
+    reopen_status: "To Do"           # status used to reopen a completed task
+    delete_mode: done                # `done` (transition) or `delete` (remove)
+
+  # --- Trello ---------------------------------------------------------------
+  trello:
+    enabled: true
+    api_key: ${TRELLO_API_KEY}       # trello.com/app-key
+    token: ${TRELLO_TOKEN}           # token generated from the app key page
+    list_id: 5f0000000000000000000000  # the list cards are synced to/from
+    delete_mode: archive             # `archive` or `delete`
+
+  # --- iOS Reminders via iCloud CalDAV --------------------------------------
+  reminders:
+    enabled: true
+    username: ${ICLOUD_EMAIL}        # your Apple ID email
+    app_password: ${ICLOUD_APP_PASSWORD}  # appleid.apple.com -> App-Specific Passwords
+    list_name: Reminders             # the Reminders list (CalDAV calendar) name
+    # url: https://caldav.icloud.com/   # override only if Apple changes it
