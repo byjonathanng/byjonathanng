@@ -3,6 +3,10 @@
 Keep your tasks in sync across **Jira**, **Trello**, and the **iOS Reminders**
 app. One task, edited anywhere, shows up everywhere.
 
+> **Not a coder?** Skip the rest of this page and follow
+> **[GETTING_STARTED.md](GETTING_STARTED.md)** — a plain-English, click-by-click
+> setup with a double-click start button. No commands to type.
+
 It's a small hub-and-spoke sync engine: each system is a *connector* exposing
 a uniform interface over a neutral task model, and a SQLite *state store*
 remembers which task in one system corresponds to which in the others. That

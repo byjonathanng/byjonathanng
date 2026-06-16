@@ -1,0 +1,36 @@
+# ┌─────────────────────────────────────────────────────────────────────┐
+# │  YOUR SETTINGS FILE                                                  │
+# │  Replace each PASTE_... below with your real info, keeping the       │
+# │  quotation marks. Then save the file as  config.yaml                 │
+# │  (see GETTING_STARTED.md — it walks you through every value).        │
+# └─────────────────────────────────────────────────────────────────────┘
+
+sync:
+  state_db: .tasksync_state.db
+  interval_seconds: 300      # how often to sync, in seconds (300 = 5 minutes)
+  propagate_deletes: true    # if you delete a task in one place, delete it everywhere
+
+systems:
+
+  # ----- JIRA -----
+  jira:
+    enabled: true
+    server: "https://PASTE_YOUR_DOMAIN.atlassian.net"   # your Jira web address
+    email: "PASTE_YOUR_JIRA_EMAIL"
+    api_token: "PASTE_YOUR_JIRA_API_TOKEN"
+    project: "PASTE_PROJECT_KEY"                          # e.g. the letters before the dash in a ticket like ABC-123
+    issue_type: "Task"
+
+  # ----- TRELLO -----
+  trello:
+    enabled: true
+    api_key: "PASTE_YOUR_TRELLO_API_KEY"
+    token: "PASTE_YOUR_TRELLO_TOKEN"
+    list_id: "PASTE_YOUR_TRELLO_LIST_ID"                  # the column on your board to sync
+
+  # ----- iPhone REMINDERS (via iCloud) -----
+  reminders:
+    enabled: true
+    username: "PASTE_YOUR_APPLE_ID_EMAIL"
+    app_password: "PASTE_YOUR_APP_SPECIFIC_PASSWORD"      # NOT your normal Apple password — see the guide
+    list_name: "Reminders"                                # the name of the list in your Reminders app
